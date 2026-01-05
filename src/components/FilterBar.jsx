@@ -7,26 +7,26 @@ const FilterBar = ({ filters, onFilterChange, onSearch, mode }) => {
   const handleClearCache = () => {
     const count = clearCache();
     alert(`Cache cleared! (${count} entries removed)`);
-    onSearch(); // Reload data
+    onSearch();
   };
 
   return (
     <div className="bg-white border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
         {/* Main Search */}
-        <div className="mb-4">
+        <div className="mb-3 sm:mb-4">
           <div className="relative">
             <input
               type="text"
-              placeholder="Search by technology, keyword, or repository..."
-              className="w-full px-4 py-3 text-base border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-900 focus:border-blue-900 transition-colors"
+              placeholder="Search by technology, keyword..."
+              className="w-full px-3 sm:px-4 py-2.5 sm:py-3 pr-20 sm:pr-24 text-sm sm:text-base border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-900 focus:border-blue-900 transition-colors"
               value={filters.searchQuery || ''}
               onChange={(e) => onFilterChange('searchQuery', e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && onSearch()}
             />
             <button
               onClick={onSearch}
-              className="absolute right-2 top-1/2 -translate-y-1/2 px-5 py-2 bg-blue-900 text-white rounded-md hover:bg-blue-800 transition-colors font-medium text-sm"
+              className="absolute right-2 top-1/2 -translate-y-1/2 px-3 sm:px-5 py-1.5 sm:py-2 bg-blue-900 text-white rounded-md hover:bg-blue-800 transition-colors font-medium text-xs sm:text-sm"
             >
               Search
             </button>
@@ -34,9 +34,9 @@ const FilterBar = ({ filters, onFilterChange, onSearch, mode }) => {
         </div>
 
         {/* Advanced Filters */}
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-3">
           {/* Language Filter */}
-          <div className="flex-1 min-w-[200px]">
+          <div className="flex-1 sm:min-w-[200px]">
             <select
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-900 focus:border-blue-900 transition-colors bg-white text-sm"
               value={filters.language || ''}
@@ -51,7 +51,7 @@ const FilterBar = ({ filters, onFilterChange, onSearch, mode }) => {
 
           {/* Difficulty Filter - Only for bounties */}
           {mode === 'bounties' && (
-            <div className="flex-1 min-w-[200px]">
+            <div className="flex-1 sm:min-w-[200px]">
               <select
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-900 focus:border-blue-900 transition-colors bg-white text-sm"
                 value={filters.difficulty || ''}
@@ -79,24 +79,27 @@ const FilterBar = ({ filters, onFilterChange, onSearch, mode }) => {
             </div>
           )}
 
-          {/* Clear Filters */}
-          {(filters.language || filters.difficulty || filters.minAmount || filters.searchQuery) && (
+          {/* Action Buttons */}
+          <div className="flex gap-2">
+            {/* Clear Filters */}
+            {(filters.language || filters.difficulty || filters.minAmount || filters.searchQuery) && (
+              <button
+                onClick={() => onFilterChange('clear')}
+                className="flex-1 sm:flex-none px-4 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors"
+              >
+                Clear filters
+              </button>
+            )}
+            
+            {/* Clear Cache - Debug button */}
             <button
-              onClick={() => onFilterChange('clear')}
-              className="px-4 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors"
+              onClick={handleClearCache}
+              className="flex-1 sm:flex-none px-3 py-2 text-xs text-gray-500 hover:text-gray-700 border border-gray-300 rounded-md transition-colors"
+              title="Clear cached data and reload"
             >
-              Clear filters
+              Clear Cache
             </button>
-          )}
-          
-          {/* Clear Cache - Debug button */}
-          <button
-            onClick={handleClearCache}
-            className="px-3 py-2 text-xs text-gray-500 hover:text-gray-700 border border-gray-300 rounded-md transition-colors"
-            title="Clear cached data and reload"
-          >
-            Clear Cache
-          </button>
+          </div>
         </div>
       </div>
     </div>

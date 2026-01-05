@@ -77,7 +77,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header mode={mode} onModeChange={handleModeChange} />
+      <Header mode={mode} onModeChange={handleModeChange} onRefresh={loadOpportunities} loading={loading} />
       {mode !== 'saved' && (
         <FilterBar 
           filters={filters}
@@ -87,7 +87,7 @@ function App() {
         />
       )}
       
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
         <OpportunityList
           opportunities={opportunities}
           loading={loading}
@@ -99,10 +99,10 @@ function App() {
         />
       </main>
 
-      <footer className="mt-16 bg-white border-t border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <footer className="mt-8 sm:mt-16 bg-white border-t border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
           <div className="text-center">
-            <p className="text-gray-600 text-sm">
+            <p className="text-gray-600 text-xs sm:text-sm">
               DevBounty - Professional coding opportunities from GitHub
             </p>
             <p className="text-gray-500 text-xs mt-2">

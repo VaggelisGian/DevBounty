@@ -62,15 +62,15 @@ const OpportunityList = ({ opportunities, loading, error, sortBy, onSortChange, 
   return (
     <div>
       {/* Sort Bar */}
-      <div className="flex items-center justify-between mb-6">
-        <p className="text-gray-700 font-medium">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 sm:mb-6">
+        <p className="text-gray-700 font-medium text-sm sm:text-base">
           {opportunities.length} {opportunities.length === 1 ? 'item' : 'items'}
           {mode === 'saved' && ' saved'}
         </p>
         <div className="flex items-center gap-2">
-          <label className="text-sm text-gray-600">Sort by:</label>
+          <label className="text-xs sm:text-sm text-gray-600">Sort by:</label>
           <select
-            className="px-3 py-1.5 border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-900 focus:border-blue-900 text-sm bg-white"
+            className="flex-1 sm:flex-none px-3 py-1.5 border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-900 focus:border-blue-900 text-xs sm:text-sm bg-white"
             value={sortBy}
             onChange={(e) => onSortChange(e.target.value)}
           >
@@ -82,7 +82,7 @@ const OpportunityList = ({ opportunities, loading, error, sortBy, onSortChange, 
       </div>
 
       {/* Opportunity Cards */}
-      <div className="space-y-4">
+      <div className="space-y-3 sm:space-y-4">
         {sortedOpportunities.map(opportunity => (
           <OpportunityCard 
             key={opportunity.id} 
