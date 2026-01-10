@@ -47,34 +47,6 @@ DevBounty searches GitHub for open issues with the `bounty` label and displays t
 
 The app uses the GitHub API to fetch real-time data and caches results locally to stay within API rate limits.
 
-## Deployment
-
-### Option 1: Netlify (Recommended)
-1. Push code to GitHub
-2. Go to [netlify.com](https://netlify.com)
-3. Click "Add new site" → "Import an existing project"
-4. Select your repository → Deploy
-5. Done! (Settings auto-detected from `netlify.toml`)
-
-### Option 2: Vercel
-1. Push code to GitHub
-2. Go to [vercel.com](https://vercel.com)
-3. Click "New Project" → Import repository
-4. Deploy (auto-detects Vite configuration)
-
-### Option 3: GitHub Pages
-1. Push code to GitHub
-2. Go to Settings → Pages
-3. Select "GitHub Actions" as source
-4. Workflow file already included in `.github/workflows/deploy.yml`
-
-### Option 4: Cloudflare Pages
-1. Push code to GitHub  
-2. Go to [pages.cloudflare.com](https://pages.cloudflare.com)
-3. Create project → Connect Git
-4. Build command: `npm run build`
-5. Output directory: `dist`
-
 ## GitHub API Rate Limits
 
 The app uses the public GitHub API:
